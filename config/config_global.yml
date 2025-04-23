@@ -1,0 +1,31 @@
+type: "global"
+path: 
+      dest: "./export"  #dest path of exported files
+
+site: "COR" 
+#-----SITE NAME-----#
+#locations:
+#"COR"
+#"TUC""
+#"VM"
+#"SMN"
+#"NQN"
+#"BAR"
+#"TRW"
+#"COM"
+#"OAPA"
+delta_day: 3   #numbr of day to plot
+max_height: 20  #maximum plot height (km)
+plot mode: "last days" #plot mode: "daily" or "last days"
+dates_to_plot: "2023-10-01,2023-10-02" #dates to plot: "YYYY-MM-DD,YYYY-MM-DD"
+# Promedio temporal: ver datos cada x cantidad de tiempo. Que no se rompa por promediar mas o menos.
+# Tamaño de la ventana
+# Offset de altura
+# Ventana del offset de bias
+# Dia máximo y dia mínimo
+# Ruta corriente oscura 
+# Nombre de la señal que se va a graficar
+
+
+
+
