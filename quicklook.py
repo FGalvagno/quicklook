@@ -4,26 +4,33 @@ import xarray as xr
 import time
 import read_licel as rl
 import plot
+from datetime import datetime as dt, timedelta as tdelta
+from yml_load import lidarConfig
 
 start = time.time()
 
 import warnings
 warnings.filterwarnings('ignore')
 
+lc = lidarConfig(config_folder="./config")
 
-print(time.time()-start)
-directory = "./input"
+directory = lc.get_src()
 days = []
+date_interval = lc.get_dateinterval()
 
-for f in os.scandir(directory):
-    if f.is_dir():
-        print(f.name)
-        days.append(rl.dtfs(directory + "/" + f.name, optimize_reading=True)[3]) #[1:2] metadata [3] data
-
+try:
+    for f in os.scandir(directory):
+        if f.is_dir() and dt.strptime(f.name, "%Y%m%d") >= date_interval[0] and dt.strptime(f.name, "%Y%m%d") <= date_interval[1]:
+            print(f.name)
+            h = rl.dtfs(directory + "/" + f.name, optimize_reading=True)
+            days.append(rl.dtfs(directory + "/" + f.name, optimize_reading=True, file_prefix=lc.)[3]) #[1:2] metadata [3] data
+except Exception as e:
+    print(f"Error reading directory: {e}")
+    
 data = xr.concat(days, dim='time')
 
 #possible_channels = data.coords['channel'].values
-channel_name = 'BT3_L1'  # First channel
+channel_name = lc.get_channel  # First channel
 time_index = 0  
 
 #slice the data for the selected channel
@@ -57,8 +64,6 @@ if use_log is True:
     z_axis = np.log10(np.transpose(voltage_avg)[:-2048])
 else:
     z_axis = np.transpose(voltage_avg)[:-2048]
-
-
 
 
 
