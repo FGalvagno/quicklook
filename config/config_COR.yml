@@ -8,6 +8,8 @@ nb: 4096  # number of bins
 zb1: -5   # zero bin position for ch1 (analog)
 zb2: -5   # zero bin position for ch2 (analog)
 psrat: 1.02e0    # P/S ratio for ch1-ch2 (photon)
+filename_prefix: "h" #prefix for the file name
 
+use_darkcurrent: True #use dark current file for noise correction
 darkcurrent: "" #dark current path
-channel: "C1" #channel to plot
+channel: "BT3_L1" #channel to plot
