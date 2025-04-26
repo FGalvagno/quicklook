@@ -8,7 +8,7 @@ import xarray as xr
 import re
 
 # Read measurement
-def dtfs(dir_meas, optimize_reading = False):
+def dtfs(dir_meas, optimize_reading = False, use_pandas_on_raw = False, file_prefix = ''):
     
     """ Reads information from the raw licel files"""
     
@@ -32,7 +32,11 @@ def dtfs(dir_meas, optimize_reading = False):
         
         mfiles = glob.glob(os.path.join(dir_meas,'*.*'))
         
-        mfiles = [file for file in mfiles if os.path.basename(file) not in ['temp.dat', 'log.txt']]
+        mfiles = [
+            file for file in mfiles 
+            if os.path.basename(file) not in ['temp.dat', 'log.txt'] 
+            and (not file_prefix or os.path.basename(file).startswith(file_prefix))
+        ]
         
         # for existing directory and files inside it, starts the reading of files     
         if len(mfiles) > 0:
@@ -115,6 +119,9 @@ def dtfs(dir_meas, optimize_reading = False):
         else:
             print('---- Warning! Folder empty \n'+\
                   f'---> !! Skip reading measurement files from folder {dir_meas}')  
+    
+    if use_pandas_on_raw is True:
+        sig_raw = sig_raw.to_dataframe(name = "sig_raw")
 
     return(system_info, channel_info, time_info, sig_raw, shots)
 
