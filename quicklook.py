@@ -22,8 +22,7 @@ try:
     for f in os.scandir(directory):
         if f.is_dir() and dt.strptime(f.name, "%Y%m%d") >= date_interval[0] and dt.strptime(f.name, "%Y%m%d") <= date_interval[1]:
             print(f.name)
-            h = rl.dtfs(directory + "/" + f.name, optimize_reading=True)
-            days.append(rl.dtfs(directory + "/" + f.name, optimize_reading=True, file_prefix=lc.)[3]) #[1:2] metadata [3] data
+            days.append(rl.dtfs(directory + "/" + f.name, optimize_reading=True, file_prefix=lc.location_prefix)[3]) #[1:2] metadata [3] data
 except Exception as e:
     print(f"Error reading directory: {e}")
     
@@ -38,25 +37,18 @@ data_slice = data.sel(channel=channel_name)  # Slice by channel
 
 height = np.array(data_slice.coords['bins'].values *7.5/1e3)
 voltage = np.array(data_slice.values * (50/(2**16-1)))
+timestamp = [np.datetime64(dt).astype('datetime64[s]').astype(object).strftime('%Y-%m-%d %H:%M') for dt in data_slice.coords['time'].values]
 
 #voltage_bc = voltage - voltage[:,-1]
-for i in range(len(voltage)):
-    voltage[i] = voltage[i] - np.average(voltage[i,-500:])
+
 
 voltage_rc = voltage * height * height *1e3/30**2
 
-def moving_average(a, n=3):
-    ret = np.cumsum(a, dtype=float)
-    ret[n:] = ret[n:] - ret[:-n]
-    return ret[n - 1:] / n
 
-voltage_avg = np.zeros((4082))
-for i in range(len(voltage_rc)):
-    voltage_avg = np.vstack([voltage_avg, moving_average(voltage_rc[i], n=15)])
 
 print(time.time()-start)
 
-time_data = [np.datetime64(dt).astype('datetime64[s]').astype(object).strftime('%Y-%m-%d %H:%M') for dt in data_slice.coords['time'].values]
+time_data = 
 
 use_log = False
 
