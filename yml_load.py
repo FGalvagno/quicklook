@@ -5,6 +5,17 @@ class lidarConfig:
     def __init__(self, config_folder):
         #config_dict.update({f.name[9:-4]: yaml.safe_load(f)})
         
+        file_prefix = dict(
+            COR= 'h',
+            TUC= 't',
+            VM = 'a',
+            SMN= 'a',
+            NQN= 'n',
+            BAR= 'b',
+            COM= 'c',
+            OAPA= 'r'
+        )
+        
         try:
             with open(config_folder+'/config_global.yml', 'r') as f:
                 self.global_config = yaml.safe_load(f)
@@ -16,6 +27,8 @@ class lidarConfig:
         except yaml.YAMLError as e:
             print(f"Error parsing YAML file: {e}")
             print("Please check the configuration files.")
+        
+        self.location_prefix = file_prefix[self.global_config['site']]
 
         """
         Initialize the lidar_config class with a dictionary of configuration settings.
@@ -36,3 +49,5 @@ class lidarConfig:
 
     def get_channel(self):
         return self.local_config['channel']
+    
+
