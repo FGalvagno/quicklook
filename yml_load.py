@@ -30,15 +30,20 @@ class lidarConfig:
         
         self.location_prefix = file_prefix[self.global_config['site']]
 
+        #Set fixed parameters
+        self.plot_limits = self.global_config['plot_limits']
+        self.bias_window = int(self.local_config['bias_correction_window'])
+        self.channel = self.local_config['channel']
+        self.src = self.local_config['src']
+        self.licel_parameters = self.local_config['licel_parameters']
+
         """
         Initialize the lidar_config class with a dictionary of configuration settings.
         
         Args:
             config_dict (dict): Dictionary containing configuration settings.
         """
-
-    def get_src(self):
-        return self.local_config['src']
+        
     
     def get_dateinterval(self):
         if(self.global_config['plot_last_days']):
@@ -46,8 +51,14 @@ class lidarConfig:
         else:
             datearray = [dt.strptime(self.global_config['starting_date'], "%Y-%m-%d"), dt.strptime(self.global_config['end_date'], "%Y-%m-%d")]
         return datearray
-
-    def get_channel(self):
-        return self.local_config['channel']
     
 
+    ##TODO: creo q los puedo sacar de los metadatos a esto
+    def get_spatialres(self):
+        return float(self.local_config['spatial_resolution'])
+
+    def get_licelparameters(self):
+ 
+        return licel_parameters
+    
+        
