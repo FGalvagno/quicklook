@@ -1,4 +1,5 @@
 import numpy as np
+import sys
 import xarray as xr
 import time
 from datetime import datetime as dt, timedelta as tdelta
@@ -25,10 +26,13 @@ channel_info = first_sample_channel_info.loc[channel_name]
 
 
 ##---------------APPLY L0-------------------##
+signal = lidardsp.offset_correction(signal, lc.zb)
 signal = signal.assign_coords(height = ('bins', lidardsp.binnum2height(signal.coords['bins'].values, channel_info, use_Km=True)))
 signal.values = lidardsp.binval2volt(signal, channel_info)
 signal.values = lidardsp.bias_correction(signal,  bias_window = lc.bias_window)
 signal.values = lidardsp.volts_height_correction(signal, channel_info)
+signal.values = lidardsp.spatial_moving_average(signal, n=lc.local_config['mv_avg_window'])
+
 #voltage = spatial_moving_average(voltage, )
 ##---------------END OF L0-------------------##
 
