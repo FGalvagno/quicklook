@@ -4,8 +4,10 @@ This repository contains a Python program designed for the raw visualization of 
 ## Features
 - [x] Visualize raw LiDAR data in an intuitive interface.
 - [x] Basic analysis tools for quick insights into data.
-- [ ] L0 processing from metadata (TODO).
-- [x] Spatial and time filtering
+- [x] L0 processing from metadata (TODO).
+- [x] Spatial and time averagin.
+- [x] Moving average for simple smooting.
+- [ ] Lidar dark current noise correction
 
 
 ## Installation
