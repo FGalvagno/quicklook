@@ -42,7 +42,7 @@ signal = signal.swap_dims({"bins": "height"})
 signal = signal.sel(height=slice(0, lc.plot_limits['h_max']))
 
 
-plot_signal(signal_set = signal, time_data=timestamp, channel_info=channel_info, limits=lc.plot_limits, use_log=lc.use_log)
+plot_signal(signal_set = signal, time_data=timestamp, channel_info=channel_info, limits=lc.plot_limits, use_log=lc.use_log, site=lc.site)
 print(time.time()-start)
 
 
