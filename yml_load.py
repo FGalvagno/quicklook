@@ -1,5 +1,5 @@
 import yaml 
-import glob
+
 from datetime import datetime as dt, timedelta as tdelta
 class lidarConfig:
     def __init__(self, config_folder):
@@ -33,9 +33,11 @@ class lidarConfig:
         #Set fixed parameters
         self.plot_limits = self.global_config['plot_limits']
         self.bias_window = int(self.local_config['bias_correction_window'])
+        self.spatial_avg_h = self.local_config['spatial_avg_h']
+        self.time_avg = self.local_config['time_avg']
+        self.use_log = self.global_config['use_log']
         self.channel = self.local_config['channel']
         self.src = self.local_config['src']
-        self.licel_parameters = self.local_config['licel_parameters']
 
         """
         Initialize the lidar_config class with a dictionary of configuration settings.
@@ -57,8 +59,5 @@ class lidarConfig:
     def get_spatialres(self):
         return float(self.local_config['spatial_resolution'])
 
-    def get_licelparameters(self):
- 
-        return licel_parameters
     
         
