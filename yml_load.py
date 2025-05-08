@@ -39,6 +39,7 @@ class lidarConfig:
         self.channel = self.local_config['channel']
         self.src = self.local_config['src']
         self.site = self.global_config['site']
+        self.zb = self.local_config['zb']
 
         """
         Initialize the lidar_config class with a dictionary of configuration settings.
