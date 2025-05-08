@@ -35,16 +35,18 @@ def moving_average(a, n=3):
     ret[n:] = ret[n:] - ret[:-n]
     return ret[n - 1:] / n
 
-def spatial_moving_average(volts, n=10):
-    volts = np.zeros(len(volts))
-    for i in range(len(volts)):
-        volts_avg = np.vstack([volts_avg, moving_average(volts[i], n)])
-    return volts_avg
+def spatial_moving_average(signal, n=10):
+    kernel = np.ones(n) / n
+    smoothed_values = np.apply_along_axis(lambda m: np.convolve(m, kernel, mode='same'), axis=1, arr=signal.values)
+    return smoothed_values
 
 ## L0 FUNCTIONS
 
-def offset_correction(volts, offset):    
-    return
+def offset_correction(signal, offset): 
+    signal = signal.isel(bins=slice(offset, None)) #index all but first offset samples
+    signal = signal.assign_coords(bins=signal.coords['bins'].values - offset) #reassign bins correct values
+    return signal 
+    
 
 def volts_height_correction(signal, channel_info):
     height = signal['height'].values
