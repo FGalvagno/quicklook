@@ -2,6 +2,14 @@ type: "site"
 src: './input'
 
 #-----SITE SPECIFIC PARAMETERS-----#
+licel_parameters:
+  spatial_resolution: 7.5 # spatial resolution in m
+  volt_resolution: 50 # LICEL voltage resolution in mV
+  bit_resolution: 16 # LICEL ADC resolution in bits
+  n_bins: 4096 # number of bins per sample
+
+bias_correction_window: 500 #Bias correction window in bins
+
 dt1: 4e-3 # Dead time for ch1 (532 co-pol near)
 dt2: 4e-3 # Dead time for ch2 (532 cross-pol)
 nb: 4096  # number of bins

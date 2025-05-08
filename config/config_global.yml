@@ -15,11 +15,16 @@ site: "COR"
 #"COM"
 #"OAPA"
 delta_day: 3   #numbr of day to plot
-max_height: 20  #maximum plot height (km)
+max_height: 20  #maximum data height (km)
 plot_last_days: False #plot mode: "dates" or "last days"
 days_to_plot: 3 #number of last days to plot
 starting_date: "2025-02-24" #dates to plot: "YYYY-MM-DD"
-end_date: "2025-02-27"
+end_date: "2025-03-01"
+#-----PLOT PARAMETERS-----#
+plot_limits:
+      z_min: -10
+      z_max: 20
+      h_max: 10 #maximum plot height (km)
 # Promedio temporal: ver datos cada x cantidad de tiempo. Que no se rompa por promediar mas o menos.
 # Tamaño de la ventana
 # Offset de altura
