@@ -1,10 +1,10 @@
 
 import plotly.graph_objects as go
 import numpy as np
-
+from datetime import datetime
 custom_jet = ['rgb(255,255,255)','rgb(0,0,131)', 'rgb(0,60,170)', 'rgb(5,255,255)', 'rgb(255,255,0)', 'rgb(250,0,0)', 'rgb(128,0,0)']
     
-def plot_signal(signal_set, time_data, channel_info, use_log=False, limits = {'z_max': 20, 'z_min': -10, 'h_max': 15,}):
+def plot_signal(signal_set, time_data, channel_info, use_log=False, limits = {'z_max': 20, 'z_min': -10, 'h_max': 15,}, site = 'N/D'):
     if use_log is True:
         z = np.log10(np.transpose(signal_set.values))
         zmax = 3
@@ -42,6 +42,8 @@ def plot_signal(signal_set, time_data, channel_info, use_log=False, limits = {'z
         
     )
     
-    # Show the plot
+    #show the plot
     fig.show()
-    fig.write_html("fig.html")
+
+    #export plot
+    fig.write_html('LiDAR_' + site +'_' + str(channel_info['detected_wavelength']) + datetime.today().strftime('%Y-%m-%d %H:%M:%S') + '.html')
