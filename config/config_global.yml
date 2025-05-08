@@ -22,9 +22,10 @@ starting_date: "2025-02-24" #dates to plot: "YYYY-MM-DD"
 end_date: "2025-03-01"
 #-----PLOT PARAMETERS-----#
 plot_limits:
-      z_min: -10
-      z_max: 20
-      h_max: 10 #maximum plot height (km)
+      z_min: -100
+      z_max: 200
+      h_max: 6 #maximum plot height (km)
+use_log: True #use log scale for the plot
 # Promedio temporal: ver datos cada x cantidad de tiempo. Que no se rompa por promediar mas o menos.
 # Tamaño de la ventana
 # Offset de altura
