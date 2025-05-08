@@ -38,6 +38,7 @@ class lidarConfig:
         self.use_log = self.global_config['use_log']
         self.channel = self.local_config['channel']
         self.src = self.local_config['src']
+        self.site = self.global_config['site']
 
         """
         Initialize the lidar_config class with a dictionary of configuration settings.
