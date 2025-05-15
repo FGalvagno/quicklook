@@ -63,8 +63,7 @@ def binnum2height(bins, channel_info, use_Km = True):
 
 def bias_correction(signal, bias_window = 500):
     volts = signal.values
-    for i in range(len(volts)):
-        volts[i] = volts[i] - np.average(volts[i,-bias_window:])
-    return volts
+    volts = volts[:, -bias_window:].mean(axis=1, keepdims=True)
+    return signal.values - volts
 
 
