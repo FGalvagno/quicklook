@@ -7,7 +7,7 @@ custom_jet = ['rgb(255,255,255)','rgb(0,0,131)', 'rgb(0,60,170)', 'rgb(5,255,255
 def plot_signal(signal_set, time_data, channel_info, use_log=False, limits = {'z_max': 20, 'z_min': -10, 'h_max': 15,}, site = 'N/D'):
     if use_log is True:
         z = np.log10(np.transpose(signal_set.values))
-        zmax = 3
+        zmax = 1
         zmin = -1
     else:
         z = np.transpose(signal_set.values)
