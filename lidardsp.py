@@ -28,7 +28,7 @@ def spatial_avg(data, n=8):
     return data.coarsen(bins=n, boundary='trim').mean()
 
 def time_avg(data, time=tdelta(minutes=15)):
-    return data.sortby('time').resample(time=time, skipna=True).mean() #Time average
+    return data.resample(time=time, skipna=True).mean() #Time average
 
 def moving_average(a, n=3):
     ret = np.cumsum(a, dtype=float)
