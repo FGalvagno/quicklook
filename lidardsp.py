@@ -53,7 +53,7 @@ def volts_height_correction(signal, channel_info):
     return np.power(height,height)*signal.values/channel_info['range_resolution']**2
 
 def binval2volt(signal, channel_info):
-    return signal.values * (channel_info['data_acquisition_range']/(2**channel_info['analog_to_digital_resolution']-1))
+    return signal.values * (channel_info['data_acquisition_range']/1000/(2**channel_info['analog_to_digital_resolution']-1))
 
 def binnum2height(bins, channel_info, use_Km = True):
     if use_Km:
