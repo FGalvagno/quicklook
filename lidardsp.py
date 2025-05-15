@@ -50,7 +50,7 @@ def offset_correction(signal, offset):
 
 def volts_height_correction(signal, channel_info):
     height = signal['height'].values
-    return np.power(height,height)*signal.values/channel_info['range_resolution']**2
+    return np.power(height,2)*signal.values
 
 def binval2volt(signal, channel_info):
     return signal.values * (channel_info['data_acquisition_range']/1000/(2**channel_info['analog_to_digital_resolution']-1))
