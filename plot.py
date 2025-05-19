@@ -33,7 +33,7 @@ def plot_signal(signal_set, time_data, channel_info, use_log=False, limits = {'z
     # Añadir suavizado configurable 
     # Update layout
     fig.update_layout(
-        title="Señal Lidar: " + str(channel_info['detected_wavelength']) + " nm",
+        title="Señal Lidar: " + str(channel_info['detected_wavelength']) + " nm, Sitio: " + site,
         xaxis_title='Tiempo',
         yaxis_title='Altura (Km)',
         xaxis=dict(type="category", tickmode="linear", dtick = 72 ),  # Adjust time format if needed
