@@ -1,0 +1,18 @@
+type: "site"
+src: './input'
+
+#-----SITE SPECIFIC PARAMETERS-----#
+#dsp parameters
+bias_correction_window: 500 #Bias correction window in bins
+mv_avg_window: 15 #Moving average window in bins
+spatial_avg_h: 4 #Spatial average height in bins
+time_avg: 15 #Time average in minutes
+
+#site parameters
+channel: "BT1_L1" #channel to plot
+zb: 5   # zero bin position for ch1 (analog)
+psrat: 1.02e0    # P/S ratio for ch1-ch2 (photon)
+
+#dark current parameters
+use_darkcurrent: True #use dark current file for noise correction
+darkcurrent: "" #dark current path
