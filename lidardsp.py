@@ -66,4 +66,4 @@ def bias_correction(signal, bias_window = 500):
     volts = volts[:, -bias_window:].mean(axis=1, keepdims=True)
     return signal.values - volts
 
-
+#def remove_dark_current(dark_current_file, signal, channel_name):
