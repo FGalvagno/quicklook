@@ -40,7 +40,7 @@ class lidarConfig:
         self.src = self.local_config['src']
         self.site = self.global_config['site']
         self.zb = self.local_config['zb']
-
+        self.auto_scale = self.global_config['auto_scale']
         """
         Initialize the lidar_config class with a dictionary of configuration settings.
         

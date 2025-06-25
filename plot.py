@@ -4,7 +4,7 @@ import numpy as np
 from datetime import datetime
 custom_jet = ['rgb(255,255,255)','rgb(0,0,131)', 'rgb(0,60,170)', 'rgb(5,255,255)', 'rgb(255,255,0)', 'rgb(250,0,0)', 'rgb(128,0,0)']
     
-def plot_signal(signal_set, time_data, channel_info, use_log=False, limits = {'z_max': 20, 'z_min': -10, 'h_max': 15,}, site = 'N/D'):
+def plot_signal(signal_set, time_data, channel_info, use_log=False, limits = {'z_max': 20, 'z_min': -10, 'h_max': 15,}, site = 'N/D', auto_scale = True):
     if use_log is True:
         z = np.log10(np.transpose(signal_set.values))
         zmax = 1
@@ -13,6 +13,12 @@ def plot_signal(signal_set, time_data, channel_info, use_log=False, limits = {'z
         z = np.transpose(signal_set.values)
         zmax = limits['z_max']
         zmin = limits['z_min']
+
+    if auto_scale is True:
+        # Override zmax and zmin with the actual min and max of the data
+        zmax = np.average(z) * 1.3
+        zmin = np.average(z) *(-0.3)
+    
     # Create the heatmap
     fig = go.Figure(data=go.Heatmap(
         z=z,  # Transpose to align bins (y) and time (x)

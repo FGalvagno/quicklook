@@ -46,7 +46,7 @@ signal = signal.swap_dims({"bins": "height"})
 # slice for max height
 signal = signal.sel(height=slice(0, lc.plot_limits['h_max']))
 
-plot_signal(signal_set = signal, time_data=timestamp, channel_info=channel_info, limits=lc.plot_limits, use_log=lc.use_log, site=lc.site)
+plot_signal(signal_set = signal, time_data=timestamp, channel_info=channel_info, limits=lc.plot_limits, use_log=lc.use_log, site=lc.site, auto_scale=lc.auto_scale)
 print(time.time()-start)
 # NOTA: Autoescala funciona bien con 1/3 para arriba y para abajo de la media.
 # <code to time>
