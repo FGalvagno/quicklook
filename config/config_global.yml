@@ -25,16 +25,10 @@ end_date: "2025-04-27"
 plot_limits:
       z_min: -350
       z_max: 700
-      h_max: 6 #maximum plot height (km)
+      h_max: 10 #maximum plot height (km)
 use_log: False #use log scale for the plot
 auto_scale: True #auto scale the plot limits
-# Promedio temporal: ver datos cada x cantidad de tiempo. Que no se rompa por promediar mas o menos.
-# Tamaño de la ventana
-# Offset de altura
-# Ventana del offset de bias
-# Dia máximo y dia mínimo
-# Ruta corriente oscura 
-# Nombre de la señal que se va a graficar
+
 
 
 
