@@ -40,6 +40,9 @@ def dtfs(dir_meas, optimize_reading = False, use_pandas_on_raw = False, file_pre
         
         # for existing directory and files inside it, starts the reading of files     
         if len(mfiles) > 0:
+            if len(mfiles) > 5000:
+                print(f"-- Folder contains {len(mfiles)} files! Skipping it because it is too big")
+            
             print(f'-- Folder contains {len(mfiles)} file(s)!')
             
             buffer = read_buffer(mfiles[0])
