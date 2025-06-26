@@ -10,15 +10,15 @@ from scipy.ndimage import gaussian_filter1d
 def read_folder(directory, date_interval, file_prefix):
     sig_raw = []
     metadata = []
-    try:
-        for f in os.scandir(directory):
+    for f in os.scandir(directory):
+        try:
             if f.is_dir() and dt.strptime(f.name, "%Y%m%d") >= date_interval[0] and dt.strptime(f.name, "%Y%m%d") <= date_interval[1]:
                 print(f.name)
                 output = rl.dtfs(directory + "/" + f.name, optimize_reading=True, file_prefix=file_prefix)
                 sig_raw.append(output[3]) #[1:2] metadata [3] data
                 metadata.append(output[1])
-    except Exception as e:
-        print(f"Error reading directory: {e}")
+        except Exception as e:
+            print(f"Error reading directory: {e}")
     
     data = xr.concat([set for set in sig_raw if len(set)], dim='time')
     first_channel_info = metadata[0]
