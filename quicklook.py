@@ -24,7 +24,7 @@ signal = signal.sortby('time')
 
 
 ##---------------FILTERING ------------------##
-#signal = lidardsp.time_avg(signal, time=tdelta(minutes=lc.time_avg))
+signal = lidardsp.time_avg(signal, time=tdelta(minutes=lc.time_avg))
 channel_info = first_sample_channel_info.loc[channel_name]
 ##---------------APPLY L0-------------------##
 signal = lidardsp.offset_correction(signal, lc.zb)
