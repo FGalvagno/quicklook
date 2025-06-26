@@ -81,4 +81,5 @@ def plot_signal(signal_set, time_data, channel_info, use_log=False, limits = {'z
     fig.show()
 
     #export plot
-    fig.write_html('LiDAR_' + site +'_' + str(channel_info['detected_wavelength']) + datetime.today().strftime('%Y-%m-%d %H:%M:%S') + '.html', include_plotlyjs='cdn', full_html=False)
+    #fig.write_html('LiDAR_' + site +'_' + str(channel_info['detected_wavelength']) + datetime.today().strftime('%Y-%m-%d %H:%M:%S') + '.html', include_plotlyjs='cdn', full_html=False)
+    fig.write_html('lidar.html', include_plotlyjs='cdn', full_html=False)
