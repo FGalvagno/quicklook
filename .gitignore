@@ -176,3 +176,4 @@ cython_debug/
 
 input/
 dark_current/
+Winscp_LIDAR_Web.*
