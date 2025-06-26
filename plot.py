@@ -17,7 +17,7 @@ def plot_signal(signal_set, time_data, channel_info, use_log=False, limits = {'z
         zmin = limits['z_min']
         if auto_scale is True:
             # Override zmax and zmin with the actual min and max of the data
-            zmax = np.average(z) * 1.3
+            zmax = np.average(z) * 2
             zmin = np.average(z) *(-1.3)
 
     
