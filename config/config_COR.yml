@@ -1,5 +1,5 @@
 type: "site"
-src: './input'
+src: 'C:\Users\LIDAR HSRL I\Documents\Data'
 
 #-----SITE SPECIFIC PARAMETERS-----#
 #dsp parameters
@@ -10,10 +10,10 @@ time_avg: 15 #Time average in minutes
 
 #site parameters
 channel: "BT3_L1" #channel to plot
-zb: 5   # zero bin position for ch1 (analog)
+zb: 8   # zero bin position for ch1 (analog)
 psrat: 1.02e0    # P/S ratio for ch1-ch2 (photon)
 filename_prefix: "h" #prefix for the file name
 
 #dark current parameters
-use_darkcurrent: True #use dark current file for noise correction
+use_darkcurrent: False #use dark current file for noise correction
 darkcurrent: "" #dark current path
