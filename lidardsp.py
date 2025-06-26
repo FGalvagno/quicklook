@@ -4,6 +4,8 @@ import xarray as xr
 from datetime import datetime as dt, timedelta as tdelta
 import read_licel as rl
 import os
+from scipy.signal import butter, filtfilt
+from scipy.ndimage import gaussian_filter1d
 
 def read_folder(directory, date_interval, file_prefix):
     sig_raw = []
@@ -66,4 +68,16 @@ def bias_correction(signal, bias_window = 500):
     volts = volts[:, -bias_window:].mean(axis=1, keepdims=True)
     return signal.values - volts
 
+def bw_filter(signal, spacing = 7.5, f0 = 0.020, N=1):
+    signal = signal.values 
+    fs = 1 / spacing 
+    nyq = fs / 2
+    Wn = f0 / nyq
+    b, a = butter(N=N, Wn=Wn, btype='low')
+    signal_filtered = filtfilt(b, a, signal, axis =1 )
+    return signal_filtered
 
+
+def gauss_filter(signal, sigma = 0.5):
+    signal_filtered = gaussian_filter1d(signal, sigma=sigma, axis=0)
+    return signal_filtered
