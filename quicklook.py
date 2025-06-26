@@ -32,6 +32,7 @@ signal = signal.assign_coords(height = ('bins', lidardsp.binnum2height(signal.co
 signal.values = lidardsp.binval2volt(signal, channel_info)
 signal.values = lidardsp.bias_correction(signal,  bias_window = lc.bias_window)
 signal.values = lidardsp.volts_height_correction(signal, channel_info)
+signal.values = lidardsp.bw_filter(signal)
 ##---------------END OF L0-------------------##
 #signal.values = lidardsp.spatial_moving_average(signal, n=lc.local_config['mv_avg_window'])
 #signal = lidardsp.spatial_avg(signal, n=lc.spatial_avg_h)
